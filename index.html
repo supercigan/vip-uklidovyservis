@@ -2204,10 +2204,8 @@
       item.classList.add('open');
       setTimeout(() => {
         const navH = document.getElementById('mainNav').offsetHeight;
-        const rect = item.getBoundingClientRect();
-        const itemCenter = rect.top + window.scrollY + rect.height / 2;
-        const target = itemCenter - window.innerHeight / 2;
-        window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+        const top = item.getBoundingClientRect().top + window.scrollY - navH - 16;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       }, 10);
     }
   }
