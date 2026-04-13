@@ -888,6 +888,48 @@
     .acc-note strong { color: var(--navy); }
     @media (max-width: 900px) { .pricing-hero { grid-template-columns: 1fr 1fr; } .pricing-hero-main { grid-column: 1 / -1; } }
     @media (max-width: 560px) { .pricing-hero { grid-template-columns: 1fr; } }
+
+    /* Price rows (simple accordion lists) */
+    .price-list { display: flex; flex-direction: column; }
+    .price-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row-name { color: var(--text); flex: 1; }
+    .price-row-val { font-weight: 700; color: var(--teal-dark); white-space: nowrap; }
+    .price-row-val.highlight { color: var(--teal); font-size: 1.05rem; }
+
+    /* Price category groups (extractor section) */
+    .price-groups-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .price-group {
+      background: var(--bg-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .price-group-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--teal-dark);
+      margin-bottom: 10px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-surcharge {
+      grid-column: 1 / -1;
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 0.95rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .price-surcharge strong { color: var(--navy); }
+    @media (max-width: 640px) { .price-groups-grid { grid-template-columns: 1fr; } }
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1725,33 +1767,27 @@
           <span class="acc-trigger-icon">🏠</span>
           <div class="acc-trigger-text">
             <div class="acc-trigger-title">Úklid domácnosti</div>
-            <div class="acc-trigger-sub">Klasický, generální, stavební úklid, žehlení — od 449 Kč/h</div>
+            <div class="acc-trigger-sub">Klasický, generální, stavební úklid, žehlení — od 449 Kč/h/hospodyňku</div>
           </div>
           <div class="acc-arrow">▼</div>
         </button>
         <div class="acc-body">
           <div class="acc-divider"></div>
-          <table class="price-table">
-            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
-            <tbody>
-              <tr><td>Klasický úklid (pravidelný / jednorázový) <small style="color:var(--text-muted)">— jezdíme ve 2</small></td><td><span style="color:var(--teal);font-weight:700">449 Kč/h</span></td></tr>
-              <tr><td>Generální úklid <small style="color:var(--text-muted)">— min. 3 hospodyňky</small></td><td>individuální kalkulace</td></tr>
-              <tr><td>Částečný generální úklid <small style="color:var(--text-muted)">— priorita stálí zákazníci</small></td><td>individuální kalkulace</td></tr>
-              <tr><td>Stavební úklid</td><td>individuální kalkulace</td></tr>
-              <tr><td>Žehlení prádla</td><td>500 Kč + dopravné</td></tr>
-              <tr><td>Vaření</td><td>449 Kč/h</td></tr>
-              <tr><td>Obhlídka domácnosti <small style="color:var(--text-muted)">— na výslovnou žádost</small></td><td>individuální</td></tr>
-              <tr><td>Ekologické přípravky (na vyžádání)</td><td>+100 Kč/h</td></tr>
-            </tbody>
-          </table>
+          <div class="price-list">
+            <div class="price-row"><span class="price-row-name">Klasický úklid <small style="color:var(--text-muted)">— pravidelný / jednorázový, jezdíme ve 2</small></span><span class="price-row-val highlight">449 Kč/h</span></div>
+            <div class="price-row"><span class="price-row-name">Generální úklid <small style="color:var(--text-muted)">— min. 3 hospodyňky</small></span><span class="price-row-val">individuální</span></div>
+            <div class="price-row"><span class="price-row-name">Částečný generální úklid <small style="color:var(--text-muted)">— priorita stálí zákazníci</small></span><span class="price-row-val">individuální</span></div>
+            <div class="price-row"><span class="price-row-name">Stavební úklid</span><span class="price-row-val">individuální</span></div>
+            <div class="price-row"><span class="price-row-name">Žehlení prádla</span><span class="price-row-val">500 Kč + dopravné</span></div>
+            <div class="price-row"><span class="price-row-name">Vaření</span><span class="price-row-val">449 Kč/h</span></div>
+            <div class="price-row"><span class="price-row-name">Ekologické přípravky <small style="color:var(--text-muted)">— na vyžádání</small></span><span class="price-row-val">+100 Kč/h</span></div>
+            <div class="price-row"><span class="price-row-name">Obhlídka domácnosti <small style="color:var(--text-muted)">— na výslovnou žádost, jinak vše emailem</small></span><span class="price-row-val">individuální</span></div>
+          </div>
           <div class="acc-note">
-            ✅ <strong>Vše v ceně:</strong> veškeré profesionální vybavení a čisticí prostředky přivážíme s sebou — vy nemusíte nic připravovat. Cena zahrnuje i sociální a zdravotní pojištění pracovnic.<br><br>
-            💡 <strong>449 Kč/h je sazba za 1 hospodyňku.</strong> Klasický úklid jezdíme ve 2, generální ve 3 a více — celková cena se násobí počtem pracovnic.<br><br>
-            🏠 <strong>Klasický úklid</strong> — jezdíme ve 2 pracovnicích. Frekvence: 1× týdně, 1× za 14 dní, 1× za 3 týdny nebo 1× měsíčně. Minimální délka 4 hodiny.<br><br>
-            ⚠️ <strong>Generální úklid</strong> — minimálně 3 hospodyňky. Nelze objednat pouze dvě pracovnice. <strong>Částečný generální úklid</strong> je dostupný přednostně pro stálé zákazníky.<br><br>
-            🔍 <strong>Obhlídka domácnosti</strong> — nejezdíme standardně. Vše potřebné sdělte emailem nebo při rezervaci.<br><br>
-            <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena kterou slyšíte, je cena kterou zaplatíte. Firemní úklidy zajišťuje VIP firemní úklid s.r.o. — plátce DPH 21 %.<br><br>
-            Storno bezplatně nejpozději <strong>48 hodin předem</strong>. V případě pozdějšího zrušení účtujeme <strong>1 000 Kč</strong>. Děkujeme za pochopení a dodržování termínů.
+            ✅ <strong>Vše v ceně:</strong> vybavení i čisticí prostředky přivážíme — vy nemusíte nic připravovat.<br><br>
+            💡 <strong>449 Kč/h = za 1 hospodyňku.</strong> Klasický úklid = 2 × 449 Kč/h, generální = 3+ × 449 Kč/h.<br><br>
+            <strong>Nejsme plátci DPH</strong> — cena kterou slyšíte, je cena kterou zaplatíte. Firemní úklidy: VIP firemní úklid s.r.o. — plátce DPH 21 %.<br><br>
+            Storno bezplatně nejpozději <strong>48 hodin předem</strong>. Pozdější zrušení: <strong>1 000 Kč</strong>.
           </div>
         </div>
       </div>
@@ -1762,23 +1798,20 @@
           <span class="acc-trigger-icon">🪟</span>
           <div class="acc-trigger-text">
             <div class="acc-trigger-title">Mytí oken</div>
-            <div class="acc-trigger-sub">Klasická, výlohová i francouzská okna, žaluzie, rolety, záclony — od 45 Kč/m²</div>
+            <div class="acc-trigger-sub">Okna, žaluzie, rolety, záclony — od 45 Kč/m²</div>
           </div>
           <div class="acc-arrow">▼</div>
         </button>
         <div class="acc-body">
           <div class="acc-divider"></div>
-          <table class="price-table">
-            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
-            <tbody>
-              <tr><td>Mytí oken — klasická, výlohová, francouzská (běžné znečištění)</td><td><span style="color:var(--teal);font-weight:700">99 Kč/m²</span></td></tr>
-              <tr><td>Mytí žaluzií</td><td>45 Kč/m²</td></tr>
-              <tr><td>Mytí venkovních rolet (běžné znečištění)</td><td>99 Kč/m²</td></tr>
-              <tr><td>Záclony a závěsy — sundání, vyprání, opětovné pověšení</td><td>individuální kalkulace</td></tr>
-            </tbody>
-          </table>
+          <div class="price-list">
+            <div class="price-row"><span class="price-row-name">Mytí oken — klasická, výlohová, francouzská <small style="color:var(--text-muted)">(běžné znečištění, vč. rámů, oboustranně)</small></span><span class="price-row-val highlight">99 Kč/m²</span></div>
+            <div class="price-row"><span class="price-row-name">Mytí žaluzií</span><span class="price-row-val">45 Kč/m²</span></div>
+            <div class="price-row"><span class="price-row-name">Mytí venkovních rolet <small style="color:var(--text-muted)">(běžné znečištění)</small></span><span class="price-row-val">99 Kč/m²</span></div>
+            <div class="price-row"><span class="price-row-name">Záclony a závěsy — sundání, vyprání, opětovné pověšení</span><span class="price-row-val">individuální</span></div>
+          </div>
           <div class="acc-note">
-            Měříme vždy <strong>včetně rámů</strong> (výška × šířka celého okna od okraje k okraji), oboustranně. Panoramatická a nestandardní okna — nutné zaslat rozměry a fotky předem, někdy odmítáme z bezpečnostních důvodů. Uveďte typ oken při rezervaci.
+            Měříme vždy <strong>včetně rámů</strong> — výška × šířka celého okna od okraje k okraji, oboustranně. Panoramatická a nestandardní okna: nutné zaslat rozměry a fotky předem. Typ oken uveďte při rezervaci.
           </div>
         </div>
       </div>
@@ -1789,51 +1822,68 @@
           <span class="acc-trigger-icon">🛋️</span>
           <div class="acc-trigger-text">
             <div class="acc-trigger-title">Čištění sedaček & koberců extraktorem</div>
-            <div class="acc-trigger-sub">Sedací soupravy · křesla · taburety · koberce · matrace — přesný ceník dle kusu</div>
+            <div class="acc-trigger-sub">Sedací soupravy · křesla · taburety · postele · koberce — ceník dle kusu</div>
           </div>
           <div class="acc-arrow">▼</div>
         </button>
         <div class="acc-body">
           <div class="acc-divider"></div>
-          <table class="price-table">
-            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
-            <tbody>
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Sedací soupravy</td></tr>
-              <tr><td>Sedací souprava čalouněná — sezení (bm od kraje do středu a zpět)</td><td><span style="color:var(--teal);font-weight:700">250 Kč/bm</span></td></tr>
-              <tr><td>Sedací souprava čalouněná — záda</td><td>250 Kč/bm</td></tr>
+          <div class="price-groups-grid">
 
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Křesla</td></tr>
-              <tr><td>Křeslo čalouněné</td><td>250 Kč/ks</td></tr>
-              <tr><td>Křeslo celočalouněné</td><td>350 Kč/ks</td></tr>
-              <tr><td>Křeslo kožené</td><td>400 Kč/ks</td></tr>
+            <div class="price-group">
+              <div class="price-group-label">🛋️ Sedací soupravy</div>
+              <div class="price-list">
+                <div class="price-row"><span class="price-row-name">Sezení <small style="color:var(--text-muted)">(bm od kraje do středu a zpět)</small></span><span class="price-row-val highlight">250 Kč/bm</span></div>
+                <div class="price-row"><span class="price-row-name">Záda</span><span class="price-row-val">250 Kč/bm</span></div>
+              </div>
+            </div>
 
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Židle & taburety</td></tr>
-              <tr><td>Židle čalouněná</td><td>150 Kč/ks</td></tr>
-              <tr><td>Židle kožená</td><td>150 Kč/ks</td></tr>
-              <tr><td>Kuchyňská lavice</td><td>150 Kč/místo</td></tr>
-              <tr><td>Taburet čalouněný malý</td><td>70 Kč/ks</td></tr>
-              <tr><td>Taburet čalouněný velký</td><td>100 Kč/ks</td></tr>
-              <tr><td>Taburet kožený malý</td><td>200 Kč/ks</td></tr>
-              <tr><td>Taburet kožený velký</td><td>400 Kč/ks</td></tr>
+            <div class="price-group">
+              <div class="price-group-label">🪑 Křesla</div>
+              <div class="price-list">
+                <div class="price-row"><span class="price-row-name">Čalouněné</span><span class="price-row-val">250 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Celočalouněné</span><span class="price-row-val">350 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Kožené</span><span class="price-row-val">400 Kč/ks</span></div>
+              </div>
+            </div>
 
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Postele & matrace</td></tr>
-              <tr><td>Jednolůžko</td><td>500 Kč/ks</td></tr>
-              <tr><td>Dvoulůžko</td><td>800 Kč/ks</td></tr>
-              <tr><td>Lůžko vč. čela</td><td>950 Kč/ks</td></tr>
-              <tr><td>Výsuvné lůžko</td><td>200 Kč/m²</td></tr>
-              <tr><td>Matrace (oboustranně)</td><td>210 Kč/m²</td></tr>
+            <div class="price-group">
+              <div class="price-group-label">🪵 Židle & taburety</div>
+              <div class="price-list">
+                <div class="price-row"><span class="price-row-name">Židle čalouněná / kožená</span><span class="price-row-val">150 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Kuchyňská lavice</span><span class="price-row-val">150 Kč/místo</span></div>
+                <div class="price-row"><span class="price-row-name">Taburet čalouněný malý / velký</span><span class="price-row-val">70 / 100 Kč</span></div>
+                <div class="price-row"><span class="price-row-name">Taburet kožený malý / velký</span><span class="price-row-val">200 / 400 Kč</span></div>
+              </div>
+            </div>
 
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Koberce</td></tr>
-              <tr><td>Koberec kusový</td><td>140 Kč/m²</td></tr>
-              <tr><td>Koberec celoplošný <small style="color:var(--text-muted)">— nábytek se nestěhuje</small></td><td>50 Kč/m²</td></tr>
+            <div class="price-group">
+              <div class="price-group-label">🛏️ Postele & matrace</div>
+              <div class="price-list">
+                <div class="price-row"><span class="price-row-name">Jednolůžko</span><span class="price-row-val">500 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Dvoulůžko</span><span class="price-row-val">800 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Lůžko vč. čela</span><span class="price-row-val">950 Kč/ks</span></div>
+                <div class="price-row"><span class="price-row-name">Výsuvné lůžko</span><span class="price-row-val">200 Kč/m²</span></div>
+                <div class="price-row"><span class="price-row-name">Matrace (oboustranně)</span><span class="price-row-val">210 Kč/m²</span></div>
+              </div>
+            </div>
 
-              <tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:var(--navy);font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase">Příplatky</td></tr>
-              <tr><td>Silné znečištění <small style="color:var(--text-muted)">— čištění trvá déle než 35–45 min</small></td><td>+25–100 %</td></tr>
-            </tbody>
-          </table>
+            <div class="price-group">
+              <div class="price-group-label">🏠 Koberce</div>
+              <div class="price-list">
+                <div class="price-row"><span class="price-row-name">Kusový koberec</span><span class="price-row-val">140 Kč/m²</span></div>
+                <div class="price-row"><span class="price-row-name">Celoplošný <small style="color:var(--text-muted)">(nábytek se nestěhuje)</small></span><span class="price-row-val">50 Kč/m²</span></div>
+              </div>
+            </div>
+
+            <div class="price-surcharge">
+              ⚠️ <span><strong>Silné znečištění</strong> (čištění trvá déle než 35–45 min) — příplatek <strong>+25–100 %</strong> doúčtován po dokončení.</span>
+            </div>
+
+          </div>
           <div class="acc-note">
-            <strong>Co je extraktor?</strong> Přístroj pracující se studenou/vlažnou vodou — vysokým tlakem vsakuje nečistoty ze sedáků a koberců, zbavuje je bakterií a zápachu. Šetrný k materiálu.<br><br>
-            <strong>Sedací soupravy se měří na bm</strong> — od kraje do středu a zpět. U L-tvaru se obě části sčítají. Područky (boky) se měří zvlášť a přičítají.<br><br>
+            <strong>Co je extraktor?</strong> Přístroj na studené/vlažné vodě — tlakem vsakuje nečistoty, bakterie a zápachy. Šetrný k materiálu.<br><br>
+            <strong>Sedací soupravy se měří na bm</strong> — od kraje do středu a zpět. L-tvar: obě části se sčítají. Područky (boky) se přičítají zvlášť.<br><br>
             <strong>Doporučená frekvence:</strong> se zvířaty každé 3 měsíce · s dětmi každých 6 měsíců · bez zvířat 1× ročně.
           </div>
         </div>
