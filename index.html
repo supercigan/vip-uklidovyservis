@@ -698,6 +698,101 @@
     .team-size-item .flat { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
     .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Cormorant Garamond', serif; }
 
+    /* Slogan banner */
+    .slogan-banner {
+      margin-top: 40px;
+      padding: 28px 36px;
+      background: var(--navy);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .slogan-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+    .slogan-text strong {
+      color: var(--teal);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* Wide service card (5th) */
+    .service-card.service-wide {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 0 28px;
+      text-align: left;
+    }
+    .service-card.service-wide .service-emoji { margin-bottom: 0; }
+    .service-card.service-wide .service-detail-list { columns: 2; gap: 8px; }
+    @media (max-width: 640px) {
+      .service-card.service-wide { grid-template-columns: 1fr; }
+      .service-card.service-wide .service-detail-list { columns: 1; }
+    }
+
+    /* Pricing table */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0;
+    }
+    .price-table th, .price-table td {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-table th {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--bg-soft);
+    }
+    .price-table td:last-child { font-weight: 600; color: var(--navy); text-align: right; }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .price-unit { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+    .pricing-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .price-card {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .price-card-header {
+      padding: 24px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-card-icon { font-size: 1.6rem; }
+    .price-card-header h3 { color: var(--navy); font-size: 1.2rem; margin: 0; }
+    .price-card-body { padding: 0; }
+    .price-card.featured { border-color: var(--teal); }
+    .price-card.featured .price-card-header { background: var(--navy); }
+    .price-card.featured .price-card-header h3 { color: white; }
+    @media (max-width: 640px) { .pricing-cols { grid-template-columns: 1fr; } }
+
     /* ===========================
        PRICING
     =========================== */
@@ -1265,6 +1360,24 @@
           <li>Profesionální vybavení v ceně</li>
         </ul>
       </div>
+      <div class="service-card service-wide fade-up">
+        <span class="service-emoji">👩‍🍳</span>
+        <div>
+          <h3>Šéfová & hospodyňky</h3>
+          <p>Pravidelná hospodyně přímo ve vaší domácnosti. Nejen úklid — postaráme se o praní, žehlení, naskládání myčky a vše, co patří k péči o domov. Diskrétně, spolehlivě, na míru.</p>
+          <ul class="service-detail-list">
+            <li>Praní a žehlení prádla</li>
+            <li>Naskládání myčky, péče o domácnost</li>
+            <li>Pravidelná docházka dle dohody</li>
+            <li>Diskrétnost a spolehlivost garantovány</li>
+            <li>Plná flexibility — termín dle vás</li>
+            <li>Vhodné pro rodiny, seniory i jednotlivce</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slogan-banner fade-up">
+      <p class="slogan-text">„Nejsem uklízečka! <strong>Jsem hospodyně v domácnosti.</strong>"</p>
     </div>
   </div>
 </section>
@@ -1404,38 +1517,61 @@
 <section class="pricing" id="cenik">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Ceník</span>
-      <h2 class="section-title">Transparentní ceny</h2>
-      <p class="section-subtitle">Ceny stanovujeme individuálně — záleží na velikosti, stavu a typu úklidu. Veškeré vybavení a přípravky jsou vždy v ceně.</p>
+      <span class="section-tag">Ceník platný od 1. 4. 2026</span>
+      <h2 class="section-title">Reálné ceny, žádná překvapení</h2>
+      <p class="section-subtitle">Veškeré profesionální vybavení a čisticí prostředky jsou zahrnuty v ceně. Vy nemusíte nic připravovat.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="pricing-card fade-up">
-        <div class="pricing-icon">🏠</div>
-        <h3>Klasický úklid</h3>
-        <p>Pravidelný nebo jednorázový. Ideální pro udržení čistoty v domácnosti bez větší námahy.</p>
-        <span class="pricing-note">Cena dle rozsahu a frekvence</span>
+
+    <div class="pricing-cols">
+      <!-- Úklid -->
+      <div class="price-card featured fade-up">
+        <div class="price-card-header">
+          <span class="price-card-icon">🏠</span>
+          <h3>Úklidové práce</h3>
+        </div>
+        <div class="price-card-body">
+          <table class="price-table">
+            <thead><tr><th>Služba</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Klasický úklid</td><td><span style="color:var(--teal);font-weight:700">449 Kč/h</span></td></tr>
+              <tr><td>Generální úklid</td><td>individuální</td></tr>
+              <tr><td>Částečný generální úklid</td><td>individuální</td></tr>
+              <tr><td>Postavování skříní</td><td>individuální</td></tr>
+              <tr><td>Žehlení prádla</td><td>449 Kč/h</td></tr>
+              <tr><td>Ekologické přípravky</td><td>+100 Kč/h</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="pricing-card featured fade-up">
-        <div class="pricing-badge">Nejoblíbenější</div>
-        <div class="pricing-icon">🔍</div>
-        <h3>Generální úklid</h3>
-        <p>Kompletní hloubkový úklid celé domácnosti s předávacím protokolem.</p>
-        <span class="pricing-note">Cena dle m² a znečištění</span>
-      </div>
-      <div class="pricing-card fade-up">
-        <div class="pricing-icon">🛋️</div>
-        <h3>Čištění & okna</h3>
-        <p>Mytí oken nebo čištění sedaček a koberců — také jako doplněk k úklidu.</p>
-        <span class="pricing-note">Individuální kalkulace</span>
+
+      <!-- Okna & sedačky -->
+      <div class="price-card fade-up">
+        <div class="price-card-header">
+          <span class="price-card-icon">🪟</span>
+          <h3>Okna & čalounění</h3>
+        </div>
+        <div class="price-card-body">
+          <table class="price-table">
+            <thead><tr><th>Služba</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Mytí oken</td><td><span style="color:var(--teal);font-weight:700">95 Kč/m²</span></td></tr>
+              <tr><td>Mytí žaluzií</td><td>40 Kč/m²</td></tr>
+              <tr><td>Mytí venkovních rolet</td><td>70 Kč/m²</td></tr>
+              <tr><td>Čištění sedaček (extraktor)</td><td><span style="color:var(--teal);font-weight:700">od 95 Kč/m²</span></td></tr>
+              <tr><td>Čištění koberců</td><td>individuální</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="pricing-info fade-up">
+
+    <div class="pricing-info fade-up" style="margin-top:24px;">
       <div class="pricing-info-icon">💡</div>
       <p>
-        <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena, kterou slyšíte, je cena, kterou platíte.
-        Firemní úklidy zajišťuje VIP firemní úklid s.r.o. (plátce DPH 21 %).
-        Storno poplatek při zrušení méně než 48 h předem: <strong>1 000 Kč</strong>.
-        Ekologické přípravky: příplatek <strong>+100 Kč/hod</strong>.
+        <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena, kterou slyšíte, je cena, kterou zaplatíte.
+        Firemní úklidy: VIP firemní úklid s.r.o. (plátce DPH 21 %).
+        Storno při zrušení méně než 48 h předem: <strong>1 000 Kč</strong>.
+        Výjezdový poplatek účtován individuálně — sdělíme před příjezdem.
       </p>
     </div>
   </div>
@@ -1534,10 +1670,24 @@
           </div>
         </div>
         <div class="contact-item fade-up">
+          <div class="contact-item-icon">🤝</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Jednatel</div>
+            <div class="contact-item-value">Renata Dostálková</div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
           <div class="contact-item-icon">🏢</div>
           <div class="contact-item-body">
-            <div class="contact-item-label">Firma</div>
-            <div class="contact-item-value">VIP cleaning service s.r.o.<br><small style="color:var(--text-muted)">IČO: 14135574 · nejsme plátci DPH</small></div>
+            <div class="contact-item-label">Firma (domácí úklid)</div>
+            <div class="contact-item-value">VIP cleaning service s.r.o.<br><small style="color:var(--text-muted)">IČO: 14135574 · DIČ: CZ14135574 · nejsme plátci DPH</small><br><small style="color:var(--text-muted)">Sídlo: Babice 204, PSČ 687 03</small></div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">🏗️</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Firma (firemní úklid)</div>
+            <div class="contact-item-value">VIP firemní úklid s.r.o.<br><small style="color:var(--text-muted)">IČO: 23818212 · DIČ: CZ23818212 · plátci DPH 21 %</small></div>
           </div>
         </div>
       </div>
@@ -1566,7 +1716,9 @@
             <option>Klasický úklid domácnosti</option>
             <option>Mytí oken</option>
             <option>Čištění sedaček a koberců</option>
+            <option>Šéfová & hospodyňky</option>
             <option>Kombinace služeb</option>
+            <option>Dárkový poukaz</option>
           </select>
         </div>
         <div class="form-group">
@@ -1604,6 +1756,8 @@
           <li><a href="#sluzby">Generální úklid</a></li>
           <li><a href="#sluzby">Mytí oken</a></li>
           <li><a href="#sluzby">Čištění sedaček</a></li>
+          <li><a href="#sluzby">Šéfová & hospodyňky</a></li>
+          <li><a href="#kontakt">🎁 Dárkové poukazy</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1612,13 +1766,14 @@
           <li><a href="tel:+420776636636">+420 776 636 636</a></li>
           <li><a href="mailto:poptavkauklid@gmail.com">poptavkauklid@gmail.com</a></li>
           <li><a href="#kontakt">Formulář poptávky</a></li>
-          <li><a href="#recenze">Recenze</a></li>
+          <li><a href="#recenze">Recenze (98.2/100)</a></li>
+          <li style="color:rgba(255,255,255,0.35);font-size:0.8rem;padding-top:4px">Jednatel: Renata Dostálková</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2024 VIP cleaning service s.r.o. · IČO: 14135574 · Všechna práva vyhrazena</p>
-      <p class="footer-ico">Velehradská třída 1206, 686 01 Uherské Hradiště</p>
+      <p>© 2026 VIP cleaning service s.r.o. · IČO: 14135574 · DIČ: CZ14135574 · Všechna práva vyhrazena</p>
+      <p class="footer-ico">Provozovna: OD Centrum, Velehradská třída 1206, 686 01 Uherské Hradiště</p>
     </div>
   </div>
 </footer>
