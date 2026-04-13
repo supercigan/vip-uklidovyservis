@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Úklidový Servis | Uherské Hradiště</title>
+  <meta name="description" content="Profesionální úklidové služby v Uherském Hradišti a okolí. Generální úklid, mytí oken, čištění sedaček a koberců. Hodnocení 98.2/100.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1E293B;
+      background: #fff;
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       WATERMARK
+    =========================== */
+    .watermark-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .watermark-layer::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: repeating-linear-gradient(
+        -35deg,
+        transparent,
+        transparent 80px,
+        rgba(15, 42, 74, 0.045) 80px,
+        rgba(15, 42, 74, 0.045) 81px
+      );
+    }
+    .watermark-text-grid {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 0;
+      transform: rotate(-30deg) scale(1.8);
+      transform-origin: center center;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+    }
+    .watermark-item {
+      flex: 0 0 auto;
+      width: 260px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(15, 42, 74, 0.08);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    /* ===========================
+       VARIABLES
+    =========================== */
+    :root {
+      --navy: #0F2A4A;
+      --teal: #06B6D4;
+      --teal-dark: #0891B2;
+      --teal-light: #E0F7FA;
+      --bg-soft: #F0F7FF;
+      --text: #1E293B;
+      --text-muted: #64748B;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(15, 42, 74, 0.08);
+      --shadow-lg: 0 12px 48px rgba(15, 42, 74, 0.14);
+    }
+
+    /* ===========================
+       TYPOGRAPHY
+    =========================== */
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; }
+    h3 { font-size: 1.2rem; font-weight: 700; }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-title { color: var(--navy); margin-bottom: 12px; }
+    .section-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; }
+
+    /* ===========================
+       LAYOUT
+    =========================== */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+
+    /* ===========================
+       BUTTONS
+    =========================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      min-height: 48px;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: white;
+      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.35);
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(6, 182, 212, 0.45); }
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: white; transform: translateY(-2px); }
+    .btn-white {
+      background: white;
+      color: var(--navy);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .btn-white:hover { background: var(--bg-soft); transform: translateY(-2px); }
+
+    /* ===========================
+       NAVIGATION
+    =========================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border), var(--shadow);
+    }
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .nav-logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--teal-dark); background: var(--teal-light); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+      border-radius: 8px;
+      min-height: 44px;
+      min-width: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: white;
+      box-shadow: var(--shadow-lg);
+      padding: 16px 24px 24px;
+      z-index: 999;
+      flex-direction: column;
+      gap: 4px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .mobile-nav a:hover { background: var(--bg-soft); color: var(--teal-dark); }
+    .mobile-nav .btn { margin-top: 8px; width: 100%; justify-content: center; }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a4a7a 60%, #0a3a6e 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(6,182,212,0.15);
+      border: 1px solid rgba(6,182,212,0.3);
+      color: var(--teal);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--teal); }
+    .hero-subtitle {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-rating-stars { font-size: 1.1rem; letter-spacing: 2px; }
+    .hero-rating-text { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .hero-rating-text strong { color: white; font-weight: 600; }
+
+    /* Hero visual card */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+    }
+    .hero-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .service-chip:last-child { margin-bottom: 0; }
+    .service-chip:hover {
+      background: rgba(6,182,212,0.15);
+      border-color: rgba(6,182,212,0.35);
+    }
+    .service-chip-icon { font-size: 1.3rem; }
+    .hero-badge-float {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      background: var(--teal);
+      color: white;
+      border-radius: 50%;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-align: center;
+      line-height: 1.2;
+      box-shadow: 0 8px 24px rgba(6,182,212,0.5);
+    }
+
+    /* ===========================
+       WHY US
+    =========================== */
+    .why-us { background: var(--bg-soft); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .why-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+    .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--teal); }
+    .why-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .why-card h3 { color: var(--navy); font-size: 1rem; margin-bottom: 8px; }
+    .why-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+
+    /* ===========================
+       SERVICES
+    =========================== */
+    .services { background: white; }
+    .section-header { margin-bottom: 48px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      background: var(--bg-soft);
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .service-emoji { font-size: 2.8rem; margin-bottom: 18px; display: block; }
+    .service-card h3 { color: var(--navy); font-size: 1.15rem; margin-bottom: 10px; }
+    .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+    .service-detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .service-detail-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .service-detail-list li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===========================
+       HOW IT WORKS
+    =========================== */
+    .how-it-works { background: var(--navy); }
+    .how-it-works .section-tag { background: rgba(6,182,212,0.15); color: var(--teal); }
+    .how-it-works .section-title { color: white; }
+    .how-it-works .section-subtitle { color: rgba(255,255,255,0.7); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(6,182,212,0.4), transparent);
+    }
+    .step-card {
+      text-align: center;
+      padding: 28px 16px;
+      position: relative;
+    }
+    .step-number {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+    }
+    .step-card h3 { color: white; font-size: 0.95rem; margin-bottom: 8px; }
+    .step-card p { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.55; }
+
+    /* ===========================
+       DEEP CLEAN (Generální úklid)
+    =========================== */
+    .deep-clean { background: white; }
+    .deep-clean-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .room-tabs { display: flex; flex-direction: column; gap: 16px; }
+    .room-tab {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+    .room-tab:hover { border-color: var(--teal); background: var(--teal-light); }
+    .room-tab-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .room-tab-icon { font-size: 1.4rem; }
+    .room-tab h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+    .room-tab ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .room-tab ul li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding-left: 14px;
+      position: relative;
+    }
+    .room-tab ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+    }
+    .deep-info { display: flex; flex-direction: column; gap: 24px; }
+    .info-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+    .info-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+    .team-size-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .team-size-item {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+    }
+    .team-size-item .flat { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+    .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Syne', sans-serif; }
+
+    /* ===========================
+       PRICING
+    =========================== */
+    .pricing { background: var(--bg-soft); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .pricing-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .pricing-card.featured {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .pricing-card.featured h3 { color: white; }
+    .pricing-card.featured p { color: rgba(255,255,255,0.7); }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--teal);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pricing-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .pricing-card h3 { color: var(--navy); font-size: 1.1rem; margin-bottom: 10px; }
+    .pricing-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+    .pricing-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--teal-light);
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+    .pricing-card.featured .pricing-note { background: rgba(6,182,212,0.15); color: rgba(255,255,255,0.7); }
+    .pricing-info {
+      margin-top: 32px;
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .pricing-info-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .pricing-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+    .pricing-info strong { color: var(--navy); }
+
+    /* ===========================
+       REVIEWS
+    =========================== */
+    .reviews { background: white; }
+    .reviews-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .rating-big {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+    }
+    .rating-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .rating-details .stars { font-size: 1.1rem; margin-bottom: 4px; }
+    .rating-details p { font-size: 0.85rem; color: var(--text-muted); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .review-stars { font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text {
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .review-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--teal), var(--navy));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .review-author-name { font-weight: 600; font-size: 0.85rem; color: var(--navy); }
+    .review-author-date { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ===========================
+       CONTACT
+    =========================== */
+    .contact { background: var(--bg-soft); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+    .contact-item-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--teal-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-item-body { flex: 1; }
+    .contact-item-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-item-value { font-weight: 600; color: var(--navy); font-size: 0.95rem; line-height: 1.4; }
+    .contact-item-value a { color: var(--teal-dark); text-decoration: none; }
+    .contact-item-value a:hover { text-decoration: underline; }
+
+    /* Form */
+    .contact-form {
+      background: white;
+      border-radius: 20px;
+      padding: 36px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .contact-form h3 { color: var(--navy); margin-bottom: 6px; }
+    .contact-form .form-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--bg-soft);
+      transition: border-color 0.2s ease;
+      outline: none;
+      min-height: 48px;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
+    }
+    .form-group textarea { min-height: 110px; resize: vertical; }
+    .form-submit { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: var(--navy);
+      padding: 48px 0 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+    .footer-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .footer-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+    }
+    .footer-desc { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .footer-social:hover { background: var(--teal); }
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+    .footer-ico { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+    /* ===========================
+       ANIMATIONS
+    =========================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ===========================
+       RESPONSIVE — 1024px
+    =========================== */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===========================
+       RESPONSIVE — 768px
+    =========================== */
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .nav-links, .nav-cta .btn { display: none; }
+      .hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-visual { display: none; }
+      .hero { padding: 100px 0 60px; min-height: auto; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { justify-content: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      .deep-clean-grid { grid-template-columns: 1fr; gap: 36px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-header-row { flex-direction: column; align-items: flex-start; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 24px 20px; }
+    }
+
+    /* ===========================
+       RESPONSIVE — 640px
+    =========================== */
+    @media (max-width: 640px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .team-size-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 1.9rem; }
+    }
+
+    /* ===========================
+       RESPONSIVE — 428px
+    =========================== */
+    @media (max-width: 428px) {
+      .container { padding: 0 16px; }
+      section { padding: 44px 0; }
+      h2 { font-size: 1.5rem; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero { padding: 90px 0 48px; }
+      .hero-badge { font-size: 0.7rem; }
+      .hero-rating { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .service-card { padding: 24px 20px; }
+      .room-tab { padding: 16px 18px; }
+      .pricing-info { flex-direction: column; gap: 12px; }
+      footer { padding: 36px 0 20px; }
+    }
+
+    /* ===========================
+       RESPONSIVE — 375px
+    =========================== */
+    @media (max-width: 375px) {
+      .container { padding: 0 14px; }
+      .hero h1 { font-size: 1.6rem; }
+      .nav-logo-sub { display: none; }
+      .btn { padding: 13px 22px; font-size: 0.9rem; }
+    }
+
+    /* ===========================
+       RESPONSIVE — 320px
+    =========================== */
+    @media (max-width: 320px) {
+      .container { padding: 0 12px; }
+      h1 { font-size: 1.45rem; }
+      h2 { font-size: 1.35rem; }
+      .nav-logo-text { font-size: 1.1rem; }
+      .team-size-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WATERMARK -->
+<div class="watermark-layer" aria-hidden="true">
+  <div class="watermark-text-grid" id="watermarkGrid"></div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">✨</div>
+      <div>
+        <div class="nav-logo-text">VIP Úklid</div>
+        <div class="nav-logo-sub">Uherské Hradiště</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#jak-to-funguje">Jak to funguje</a></li>
+      <li><a href="#cenik">Ceník</a></li>
+      <li><a href="#recenze">Recenze</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+420776636636" class="btn btn-primary">📞 Zavolat</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#sluzby" onclick="closeMobile()">🧹 Služby</a>
+  <a href="#jak-to-funguje" onclick="closeMobile()">⚙️ Jak to funguje</a>
+  <a href="#cenik" onclick="closeMobile()">💎 Ceník</a>
+  <a href="#recenze" onclick="closeMobile()">⭐ Recenze</a>
+  <a href="#kontakt" onclick="closeMobile()">📍 Kontakt</a>
+  <a href="tel:+420776636636" class="btn btn-primary">📞 +420 776 636 636</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="uvod">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          ⭐ Hodnocení 98.2 / 100 · 99 recenzí
+        </div>
+        <h1>Profesionální<br>úklid, který <span>opravdu vidíte</span></h1>
+        <p class="hero-subtitle">
+          Tým pečlivých hospodyněk v Uherském Hradišti a okolí. Generální úklidy, mytí oken, čištění koberců — s předávacím protokolem a zárukou spokojenosti.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">📨 Nezávazná poptávka</a>
+          <a href="#sluzby" class="btn btn-white">Naše služby →</a>
+        </div>
+        <div class="hero-rating">
+          <div class="hero-rating-stars">⭐⭐⭐⭐⭐</div>
+          <div class="hero-rating-text">
+            <strong>98.2 / 100</strong> — 99 spokojených klientů na Firmy.cz
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-badge-float">
+            <span style="font-size:1.1rem">98</span>
+            <span style="font-size:0.6rem;font-weight:600">/ 100</span>
+          </div>
+          <div class="hero-card-title">✨ Co děláme nejlépe</div>
+          <div class="service-chip"><span class="service-chip-icon">🏠</span> Generální úklid bytu / domu</div>
+          <div class="service-chip"><span class="service-chip-icon">🪟</span> Mytí oken — všechny typy</div>
+          <div class="service-chip"><span class="service-chip-icon">🛋️</span> Čištění sedaček a koberců</div>
+          <div class="service-chip"><span class="service-chip-icon">✅</span> Klasický pravidelný úklid</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Proč VIP Úklid?</span>
+      <h2 class="section-title">Úklid, na který se spolehnou</h2>
+      <p class="section-subtitle">Mladý a energický tým hospodyněk s prokazatelnými výsledky a transparentním přístupem.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <span class="why-icon">⭐</span>
+        <h3>98.2 / 100 hodnocení</h3>
+        <p>99 ověřených recenzí na Firmy.cz — patříme k nejlépe hodnoceným úklidovým službám v regionu.</p>
+      </div>
+      <div class="why-card fade-up">
+        <span class="why-icon">📋</span>
+        <h3>Předávací protokol</h3>
+        <p>Po každém generálním úklidu předáme byt písemně — vy zkontrolujete, my podepíšeme.</p>
+      </div>
+      <div class="why-card fade-up">
+        <span class="why-icon">🧴</span>
+        <h3>Prostředky v ceně</h3>
+        <p>Veškeré profesionální čisticí přípravky a vybavení přivážíme. Nemusíte nic připravovat.</p>
+      </div>
+      <div class="why-card fade-up">
+        <span class="why-icon">🤝</span>
+        <h3>Diskrétnost & důvěra</h3>
+        <p>Fotografie a videa sdílíme vždy jen se souhlasem klienta. Vaše soukromí je priorita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="sluzby">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Naše služby</span>
+      <h2 class="section-title">Co pro vás uděláme</h2>
+      <p class="section-subtitle">Čtyři specializované služby — každá provedena s maximální pečlivostí.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <span class="service-emoji">🏠</span>
+        <h3>Klasický úklid domácnosti</h3>
+        <p>Pravidelný nebo jednorázový úklid přizpůsobený vašim potřebám. Luxování, setření prachu, koupelna, kuchyň.</p>
+        <ul class="service-detail-list">
+          <li>Pravidelný i jednorázový termín</li>
+          <li>Flexibilní časový plán</li>
+          <li>Příjezd od 8:30, mimo UH 8:45–9:15</li>
+          <li>Minimální délka 4 hodiny</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-emoji">🔍</span>
+        <h3>Generální úklid</h3>
+        <p>Hloubkový úklid celého bytu nebo domu — centimetr po centimetru. Spáry, vodní kámen, mastnotám odoláváme.</p>
+        <ul class="service-detail-list">
+          <li>Koupelna: spáry, vodní kámen, kolejnice</li>
+          <li>Kuchyň: celá linka, spotřebiče, chladnička</li>
+          <li>Skříňky, šuplíky, lustry, dveře</li>
+          <li>Písemný předávací protokol</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-emoji">🪟</span>
+        <h3>Mytí oken</h3>
+        <p>Mytí oken celoročně — klasická, výlohová i francouzská. Výsledek bez pruhů a šmouh garantujeme.</p>
+        <ul class="service-detail-list">
+          <li>Klasická, výlohová i francouzská okna</li>
+          <li>Celoroční provoz</li>
+          <li>Nutno uvést typ oken při rezervaci</li>
+          <li>Panoramatická okna individuálně</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-emoji">🛋️</span>
+        <h3>Čištění sedaček & koberců</h3>
+        <p>Profesionální extrakční čištění čalounění, koberců a sedacích souprav. Odstraňujeme skvrny, alergeny i pachy.</p>
+        <ul class="service-detail-list">
+          <li>Sedačky, křesla, pohovky</li>
+          <li>Koberce a předložky</li>
+          <li>Čalounění na míru</li>
+          <li>Profesionální vybavení v ceně</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="jak-to-funguje">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Postup</span>
+      <h2 class="section-title">Jak to funguje?</h2>
+      <p class="section-subtitle">Čtyři kroky od poptávky po čistý domov.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-number">1</div>
+        <h3>Poptávka</h3>
+        <p>Napište nebo zavolejte. Sdělte adresu, velikost, stav a typ úklidu.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">2</div>
+        <h3>Potvrzení & termín</h3>
+        <p>Ozve se vám koordinátorka, potvrdí cenu a vyberete termín.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">3</div>
+        <h3>Úklid</h3>
+        <p>Tým dorazí v dohodnutý čas s vybavením. Vy nemusíte být doma celou dobu.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">4</div>
+        <h3>Předání & protokol</h3>
+        <p>Zkontrolujete výsledek, podepíšeme předávací protokol. Hotovo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP CLEAN DETAIL -->
+<section class="deep-clean">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Generální úklid — detail</span>
+      <h2 class="section-title">Co přesně zahrnuje?</h2>
+      <p class="section-subtitle">Procházíme domácnost místnost po místnosti — žádný kout nepřeskočíme.</p>
+    </div>
+    <div class="deep-clean-grid">
+      <div class="room-tabs">
+        <div class="room-tab fade-up">
+          <div class="room-tab-header">
+            <span class="room-tab-icon">🚿</span>
+            <h4>Koupelna</h4>
+          </div>
+          <ul>
+            <li>Čištění spár a obkladů</li>
+            <li>Sprchový kout, odstranění vodního kamene</li>
+            <li>Čištění kolejnic a dveří</li>
+            <li>Vyklízení a mytí skříněk a šuplíků</li>
+            <li>Čištění lustrů</li>
+          </ul>
+        </div>
+        <div class="room-tab fade-up">
+          <div class="room-tab-header">
+            <span class="room-tab-icon">🍳</span>
+            <h4>Kuchyň</h4>
+          </div>
+          <ul>
+            <li>Vyskládání a vytření celé linky</li>
+            <li>Odmašťování a vysávání</li>
+            <li>Čištění chladničky a mikrovlnné trouby</li>
+            <li>Ostatní spotřebiče dle dohody</li>
+          </ul>
+        </div>
+        <div class="room-tab fade-up">
+          <div class="room-tab-header">
+            <span class="room-tab-icon">🛋️</span>
+            <h4>Obývací pokoje & ložnice</h4>
+          </div>
+          <ul>
+            <li>Detailní setření prachu všude</li>
+            <li>Luxování, mokré vytření podlah</li>
+            <li>Čištění parapetů a žaluzií</li>
+            <li>Bez vstupu do osobních věcí</li>
+          </ul>
+        </div>
+      </div>
+      <div class="deep-info">
+        <div class="info-card fade-up">
+          <h4>👥 Počet pracovnic dle velikosti</h4>
+          <div class="team-size-grid">
+            <div class="team-size-item">
+              <div class="flat">1+kk / 1+1</div>
+              <div class="count">3 pracovnice</div>
+            </div>
+            <div class="team-size-item">
+              <div class="flat">2+1</div>
+              <div class="count">3–4 pracovnice</div>
+            </div>
+            <div class="team-size-item">
+              <div class="flat">3+1</div>
+              <div class="count">4 pracovnice</div>
+            </div>
+            <div class="team-size-item">
+              <div class="flat">4+1</div>
+              <div class="count">5–6 pracovnic</div>
+            </div>
+            <div class="team-size-item">
+              <div class="flat">Větší nemovitosti</div>
+              <div class="count">5–8 pracovnic</div>
+            </div>
+            <div class="team-size-item">
+              <div class="flat">Typická délka (1+kk)</div>
+              <div class="count">~6 hodin</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card fade-up">
+          <h4>📌 Co potřebujeme vědět předem</h4>
+          <ul class="service-detail-list">
+            <li>Adresa a přibližná velikost v m²</li>
+            <li>Počet pokojů a koupelen</li>
+            <li>Typ a výška stropů</li>
+            <li>Úroveň znečištění (běžné / silné)</li>
+            <li>Počet oken a jejich typ</li>
+            <li>Fotky při silném znečištění</li>
+          </ul>
+        </div>
+        <div class="info-card fade-up" style="background: var(--teal-light); border-color: var(--teal);">
+          <h4>⚡ Proč více lidí = lepší výsledek</h4>
+          <p style="color: var(--text-muted); font-size:0.9rem; line-height:1.6;">Více pracovnic znamená kratší dobu a vyšší efektivitu. Často levnější než konkurence nabízející jednoho člověka na celý den.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="cenik">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Ceník</span>
+      <h2 class="section-title">Transparentní ceny</h2>
+      <p class="section-subtitle">Ceny stanovujeme individuálně — záleží na velikosti, stavu a typu úklidu. Veškeré vybavení a přípravky jsou vždy v ceně.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-icon">🏠</div>
+        <h3>Klasický úklid</h3>
+        <p>Pravidelný nebo jednorázový. Ideální pro udržení čistoty v domácnosti bez větší námahy.</p>
+        <span class="pricing-note">Cena dle rozsahu a frekvence</span>
+      </div>
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-badge">Nejoblíbenější</div>
+        <div class="pricing-icon">🔍</div>
+        <h3>Generální úklid</h3>
+        <p>Kompletní hloubkový úklid celé domácnosti s předávacím protokolem.</p>
+        <span class="pricing-note">Cena dle m² a znečištění</span>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-icon">🛋️</div>
+        <h3>Čištění & okna</h3>
+        <p>Mytí oken nebo čištění sedaček a koberců — také jako doplněk k úklidu.</p>
+        <span class="pricing-note">Individuální kalkulace</span>
+      </div>
+    </div>
+    <div class="pricing-info fade-up">
+      <div class="pricing-info-icon">💡</div>
+      <p>
+        <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena, kterou slyšíte, je cena, kterou platíte.
+        Firemní úklidy zajišťuje VIP firemní úklid s.r.o. (plátce DPH 21 %).
+        Storno poplatek při zrušení méně než 48 h předem: <strong>1 000 Kč</strong>.
+        Ekologické přípravky: příplatek <strong>+100 Kč/hod</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="recenze">
+  <div class="container">
+    <div class="reviews-header-row">
+      <div>
+        <span class="section-tag">Recenze</span>
+        <h2 class="section-title">Co říkají klienti</h2>
+      </div>
+      <div class="rating-big">
+        <div class="rating-number">98.2</div>
+        <div class="rating-details">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>z 100 bodů<br>99 recenzí na Firmy.cz</p>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">„Absolutní profesionalita. Byt vypadal jako nový — spáry v koupelně jsem neviděla tak čisté za celé roky. Oceňuji předávací protokol, to jinde nemají."</p>
+        <div class="review-author">
+          <div class="review-avatar">MK</div>
+          <div>
+            <div class="review-author-name">Martina K.</div>
+            <div class="review-author-date">Uherské Hradiště</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">„Objednala jsem generální úklid před stěhováním. Přišly čtyři hospodyňky a za 6 hodin byl byt zářivě čistý. Doporučuji všem!"</p>
+        <div class="review-author">
+          <div class="review-avatar">LP</div>
+          <div>
+            <div class="review-author-name">Lucie P.</div>
+            <div class="review-author-date">okolí Uh. Hradiště</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">„VIP Úklid myje okna opravdu skvěle — bez pruhů, do posledního rohu. Cena odpovídá kvalitě. Budu volat znovu."</p>
+        <div class="review-author">
+          <div class="review-avatar">JN</div>
+          <div>
+            <div class="review-author-name">Jan N.</div>
+            <div class="review-author-date">Uherské Hradiště</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Kontakt</span>
+      <h2 class="section-title">Poptejte se zdarma</h2>
+      <p class="section-subtitle">Ozveme se vám do konce pracovního dne.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Telefon</div>
+            <div class="contact-item-value"><a href="tel:+420776636636">+420 776 636 636</a></div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">E-mail</div>
+            <div class="contact-item-value"><a href="mailto:poptavkauklid@gmail.com">poptavkauklid@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Adresa</div>
+            <div class="contact-item-value">Velehradská třída 1206<br>686 01 Uherské Hradiště<br><small style="color:var(--text-muted)">OD Centrum, 2. patro</small></div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Pracovní doba</div>
+            <div class="contact-item-value">Po–Pá: 8:30 – 15:30<br><small style="color:var(--text-muted)">Pokud se nedovoláte — jsme na úklidu, ozveme se do 16:00</small></div>
+          </div>
+        </div>
+        <div class="contact-item fade-up">
+          <div class="contact-item-icon">🏢</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">Firma</div>
+            <div class="contact-item-value">VIP cleaning service s.r.o.<br><small style="color:var(--text-muted)">IČO: 14135574 · nejsme plátci DPH</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form fade-up">
+        <h3>Nezávazná poptávka</h3>
+        <p class="form-subtitle">Vyplňte formulář a ozveme se vám co nejdříve.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Jméno a příjmení</label>
+            <input type="text" id="name" placeholder="Jana Nováková" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" placeholder="+420 777 000 000" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="jana@email.cz" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="service">Typ služby</label>
+          <select id="service">
+            <option value="">Vyberte službu...</option>
+            <option>Generální úklid</option>
+            <option>Klasický úklid domácnosti</option>
+            <option>Mytí oken</option>
+            <option>Čištění sedaček a koberců</option>
+            <option>Kombinace služeb</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Detaily (adresa, velikost bytu, stav...)</label>
+          <textarea id="message" placeholder="Např.: 3+1, Uherské Hradiště, cca 75 m², standartní znečištění, chci generální úklid + mytí oken..."></textarea>
+        </div>
+        <button type="button" class="btn btn-primary form-submit" onclick="submitForm()">📨 Odeslat poptávku</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">
+          <div class="footer-logo-icon">✨</div>
+          <div class="footer-logo-text">VIP Úklid</div>
+        </a>
+        <p class="footer-desc">Profesionální úklidový servis v Uherském Hradišti a okolí. Hodnocení 98.2/100 na základě 99 ověřených recenzí.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/VIPuklidovyservis/" target="_blank" class="footer-social" aria-label="Facebook">📘</a>
+          <a href="https://www.instagram.com/uklidova_sluzba_vip/" target="_blank" class="footer-social" aria-label="Instagram">📸</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Služby</h4>
+        <ul class="footer-links">
+          <li><a href="#sluzby">Klasický úklid</a></li>
+          <li><a href="#sluzby">Generální úklid</a></li>
+          <li><a href="#sluzby">Mytí oken</a></li>
+          <li><a href="#sluzby">Čištění sedaček</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+420776636636">+420 776 636 636</a></li>
+          <li><a href="mailto:poptavkauklid@gmail.com">poptavkauklid@gmail.com</a></li>
+          <li><a href="#kontakt">Formulář poptávky</a></li>
+          <li><a href="#recenze">Recenze</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 VIP cleaning service s.r.o. · IČO: 14135574 · Všechna práva vyhrazena</p>
+      <p class="footer-ico">Velehradská třída 1206, 686 01 Uherské Hradiště</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Generate watermark
+  const grid = document.getElementById('watermarkGrid');
+  const text = 'Demoverze – Tomáš Smolík';
+  const count = 200;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'watermark-item';
+    el.textContent = text;
+    grid.appendChild(el);
+  }
+
+  // Navbar scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+      closeMobile();
+    }
+  });
+
+  // Fade-up animation on scroll
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Form submit
+  function submitForm() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    if (!name || !phone) {
+      alert('Prosím vyplňte alespoň jméno a telefon.');
+      return;
+    }
+    alert('Děkujeme za poptávku! Ozveme se vám co nejdříve, nejpozději do konce pracovního dne.');
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('service').value = '';
+    document.getElementById('message').value = '';
+  }
+</script>
+</body>
+</html>
