@@ -2200,7 +2200,16 @@
     const item = document.getElementById(id);
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    if (!isOpen) {
+      item.classList.add('open');
+      setTimeout(() => {
+        const navH = document.getElementById('mainNav').offsetHeight;
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + window.scrollY + rect.height / 2;
+        const target = itemCenter - window.innerHeight / 2;
+        window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+      }, 10);
+    }
   }
 
   // Form submit
