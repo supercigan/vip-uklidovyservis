@@ -2199,9 +2199,8 @@
   function toggleAcc(id) {
     const item = document.getElementById(id);
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('open'));
+    item.classList.toggle('open');
     if (!isOpen) {
-      item.classList.add('open');
       setTimeout(() => {
         const navH = document.getElementById('mainNav').offsetHeight;
         const top = item.getBoundingClientRect().top + window.scrollY - navH - 16;
