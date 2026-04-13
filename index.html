@@ -7,7 +7,7 @@
   <meta name="description" content="Profesionální úklidové služby v Uherském Hradišti a okolí. Generální úklid, mytí oken, čištění sedaček a koberců. Hodnocení 98.2/100.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <style>
     /* ===========================
        RESET & BASE
@@ -15,8 +15,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Inter', sans-serif;
-      color: #1E293B;
+      font-family: 'DM Sans', sans-serif;
+      color: #2A2118;
       background: #fff;
       overflow-x: hidden;
       font-size: 16px;
@@ -43,8 +43,8 @@
         -35deg,
         transparent,
         transparent 80px,
-        rgba(15, 42, 74, 0.045) 80px,
-        rgba(15, 42, 74, 0.045) 81px
+        rgba(28, 24, 18, 0.045) 80px,
+        rgba(28, 24, 18, 0.045) 81px
       );
     }
     .watermark-text-grid {
@@ -68,8 +68,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(15, 42, 74, 0.08);
-      font-family: 'Inter', sans-serif;
+      color: rgba(28, 24, 18, 0.08);
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -82,27 +82,27 @@
        VARIABLES
     =========================== */
     :root {
-      --navy: #0F2A4A;
-      --teal: #06B6D4;
-      --teal-dark: #0891B2;
-      --teal-light: #E0F7FA;
-      --bg-soft: #F0F7FF;
-      --text: #1E293B;
-      --text-muted: #64748B;
+      --navy: #1C1812;
+      --teal: #C4A97D;
+      --teal-dark: #A88B62;
+      --teal-light: #F0E8D6;
+      --bg-soft: #F5EFE6;
+      --text: #2A2118;
+      --text-muted: #7B6E62;
       --white: #FFFFFF;
-      --border: #E2E8F0;
+      --border: #E8DDD0;
       --radius: 16px;
-      --shadow: 0 4px 24px rgba(15, 42, 74, 0.08);
-      --shadow-lg: 0 12px 48px rgba(15, 42, 74, 0.14);
+      --shadow: 0 4px 24px rgba(28, 24, 18, 0.08);
+      --shadow-lg: 0 12px 48px rgba(28, 24, 18, 0.14);
     }
 
     /* ===========================
        TYPOGRAPHY
     =========================== */
-    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.2; }
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
-    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; }
-    h3 { font-size: 1.2rem; font-weight: 600; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.15; }
+    h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 600; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 600; }
+    h3 { font-size: 1.3rem; font-weight: 600; }
 
     .section-tag {
       display: inline-block;
@@ -134,7 +134,7 @@
       gap: 8px;
       padding: 14px 28px;
       border-radius: 100px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
       cursor: pointer;
@@ -210,14 +210,14 @@
       flex-shrink: 0;
     }
     .nav-logo-text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.3rem;
       font-weight: 700;
       color: white;
       line-height: 1.1;
     }
     .nav-logo-sub {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.65rem;
       font-weight: 500;
       color: rgba(255,255,255,0.65);
@@ -301,7 +301,7 @@
     =========================== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a4a7a 60%, #0a3a6e 100%);
+      background: linear-gradient(150deg, #1C1812 0%, #251E14 55%, #1A1610 100%);
       display: flex;
       align-items: center;
       position: relative;
@@ -311,21 +311,21 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
+      top: -20%;
+      right: 5%;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(196,169,125,0.12) 0%, transparent 65%);
       border-radius: 50%;
     }
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -20%;
+      bottom: -15%;
       left: -5%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(196,169,125,0.07) 0%, transparent 65%);
       border-radius: 50%;
     }
     .hero-grid {
@@ -340,8 +340,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(6,182,212,0.15);
-      border: 1px solid rgba(6,182,212,0.3);
+      background: rgba(196,169,125,0.12);
+      border: 1px solid rgba(196,169,125,0.3);
       color: var(--teal);
       font-size: 0.8rem;
       font-weight: 600;
@@ -375,67 +375,123 @@
     .hero-rating-text { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
     .hero-rating-text strong { color: white; font-weight: 600; }
 
-    /* Hero visual card */
+    /* Hero visual — orb */
     .hero-visual {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .hero-card {
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      padding: 32px;
+    .hero-orb {
       position: relative;
+      width: 360px;
+      height: 360px;
     }
-    .hero-card-title {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .service-chip {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      margin-bottom: 10px;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .service-chip:last-child { margin-bottom: 0; }
-    .service-chip:hover {
-      background: rgba(6,182,212,0.15);
-      border-color: rgba(6,182,212,0.35);
-    }
-    .service-chip-icon { font-size: 1.3rem; }
-    .hero-badge-float {
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-slow-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes float-tag { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .hero-orb-ring {
       position: absolute;
-      top: -16px;
-      right: -16px;
-      background: var(--teal);
-      color: white;
       border-radius: 50%;
-      width: 72px;
-      height: 72px;
+      border: 1px solid rgba(196,169,125,0.22);
+      top: 50%; left: 50%;
+    }
+    .hero-orb-ring-1 {
+      width: 360px; height: 360px;
+      margin: -180px 0 0 -180px;
+      animation: spin-slow 28s linear infinite;
+    }
+    .hero-orb-ring-1::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      top: -4px; left: 50%;
+      margin-left: -4px;
+      box-shadow: 0 0 12px rgba(196,169,125,0.8);
+    }
+    .hero-orb-ring-2 {
+      width: 300px; height: 300px;
+      margin: -150px 0 0 -150px;
+      border-color: rgba(196,169,125,0.12);
+      animation: spin-slow-rev 40s linear infinite;
+    }
+    .hero-orb-ring-2::after {
+      content: '';
+      position: absolute;
+      width: 5px; height: 5px;
+      background: rgba(196,169,125,0.5);
+      border-radius: 50%;
+      bottom: -2.5px; left: 50%;
+      margin-left: -2.5px;
+    }
+    .hero-orb-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 220px; height: 220px;
+      margin: -110px 0 0 -110px;
+      border-radius: 50%;
+      background: rgba(196,169,125,0.08);
+      border: 1px solid rgba(196,169,125,0.28);
+      backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
       text-align: center;
-      line-height: 1.2;
-      box-shadow: 0 8px 24px rgba(6,182,212,0.5);
+    }
+    .hero-orb-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .hero-orb-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.2rem;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .hero-orb-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 6px;
+    }
+    .hero-float-tag {
+      position: absolute;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(196,169,125,0.22);
+      backdrop-filter: blur(10px);
+      border-radius: 100px;
+      padding: 9px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
+    }
+    .hero-float-tag.tag-1 {
+      top: 10px; left: 50%; transform: translateX(-50%);
+      animation: float-tag 3.5s ease-in-out infinite;
+    }
+    .hero-float-tag.tag-2 {
+      right: -24px; top: 38%;
+      animation: float-tag 4s ease-in-out infinite 0.5s;
+    }
+    .hero-float-tag.tag-3 {
+      bottom: 10px; left: 50%; transform: translateX(-50%);
+      animation: float-tag 3.8s ease-in-out infinite 1s;
+    }
+    .hero-float-tag.tag-4 {
+      left: -24px; top: 38%;
+      animation: float-tag 4.2s ease-in-out infinite 1.5s;
     }
 
     /* ===========================
@@ -525,7 +581,7 @@
        HOW IT WORKS
     =========================== */
     .how-it-works { background: var(--navy); }
-    .how-it-works .section-tag { background: rgba(6,182,212,0.15); color: var(--teal); }
+    .how-it-works .section-tag { background: rgba(196,169,125,0.15); color: var(--teal); }
     .how-it-works .section-title { color: white; }
     .how-it-works .section-subtitle { color: rgba(255,255,255,0.7); }
     .steps-grid {
@@ -542,7 +598,7 @@
       left: 8%;
       right: 8%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(6,182,212,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(196,169,125,0.3), transparent);
     }
     .step-card {
       text-align: center;
@@ -557,12 +613,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.2rem;
       font-weight: 800;
       color: white;
       margin: 0 auto 18px;
-      box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+      box-shadow: 0 4px 20px rgba(196,169,125,0.3);
     }
     .step-card h3 { color: white; font-size: 0.95rem; margin-bottom: 8px; }
     .step-card p { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.55; }
@@ -595,7 +651,7 @@
       margin-bottom: 10px;
     }
     .room-tab-icon { font-size: 1.4rem; }
-    .room-tab h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+    .room-tab h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
     .room-tab ul {
       list-style: none;
       display: flex;
@@ -622,7 +678,7 @@
       border: 1px solid var(--border);
     }
     .info-card h4 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 14px;
@@ -640,7 +696,7 @@
       border: 1px solid var(--border);
     }
     .team-size-item .flat { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-    .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Cormorant Garamond', serif; }
 
     /* ===========================
        PRICING
@@ -693,7 +749,7 @@
       padding: 6px 12px;
       border-radius: 8px;
     }
-    .pricing-card.featured .pricing-note { background: rgba(6,182,212,0.15); color: rgba(255,255,255,0.7); }
+    .pricing-card.featured .pricing-note { background: rgba(196,169,125,0.15); color: rgba(255,255,255,0.7); }
     .pricing-info {
       margin-top: 32px;
       background: white;
@@ -730,7 +786,7 @@
       border: 1px solid var(--border);
     }
     .rating-number {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 2.8rem;
       font-weight: 800;
       color: var(--navy);
@@ -836,7 +892,7 @@
       padding: 13px 16px;
       border: 1.5px solid var(--border);
       border-radius: 10px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.95rem;
       color: var(--text);
       background: var(--bg-soft);
@@ -850,7 +906,7 @@
     .form-group textarea:focus {
       border-color: var(--teal);
       background: white;
-      box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
+      box-shadow: 0 0 0 3px rgba(196,169,125,0.1);
     }
     .form-group textarea { min-height: 110px; resize: vertical; }
     .form-submit { width: 100%; justify-content: center; margin-top: 8px; }
@@ -889,7 +945,7 @@
       flex-shrink: 0;
     }
     .footer-logo-text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.2rem;
       font-weight: 800;
       color: white;
@@ -911,7 +967,7 @@
     }
     .footer-social:hover { background: var(--teal); }
     .footer-col h4 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 0.85rem;
       font-weight: 700;
       color: white;
@@ -1104,16 +1160,18 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-card">
-          <div class="hero-badge-float">
-            <span style="font-size:1.1rem">98</span>
-            <span style="font-size:0.6rem;font-weight:600">/ 100</span>
+        <div class="hero-orb">
+          <div class="hero-orb-ring hero-orb-ring-1"></div>
+          <div class="hero-orb-ring hero-orb-ring-2"></div>
+          <div class="hero-orb-center">
+            <div class="hero-orb-label">Hodnocení</div>
+            <div class="hero-orb-number">98.2</div>
+            <div class="hero-orb-sub">z 100 · 99 recenzí</div>
           </div>
-          <div class="hero-card-title">✨ Co děláme nejlépe</div>
-          <div class="service-chip"><span class="service-chip-icon">🏠</span> Generální úklid bytu / domu</div>
-          <div class="service-chip"><span class="service-chip-icon">🪟</span> Mytí oken — všechny typy</div>
-          <div class="service-chip"><span class="service-chip-icon">🛋️</span> Čištění sedaček a koberců</div>
-          <div class="service-chip"><span class="service-chip-icon">✅</span> Klasický pravidelný úklid</div>
+          <div class="hero-float-tag tag-1">🏠 Generální úklid</div>
+          <div class="hero-float-tag tag-2">🪟 Mytí oken</div>
+          <div class="hero-float-tag tag-3">🛋️ Čištění sedaček</div>
+          <div class="hero-float-tag tag-4">✅ Protokol</div>
         </div>
       </div>
     </div>
