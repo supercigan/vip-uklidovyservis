@@ -7,7 +7,7 @@
   <meta name="description" content="Profesionální úklidové služby v Uherském Hradišti a okolí. Generální úklid, mytí oken, čištění sedaček a koberců. Hodnocení 98.2/100.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ===========================
        RESET & BASE
@@ -99,10 +99,10 @@
     /* ===========================
        TYPOGRAPHY
     =========================== */
-    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; }
-    h3 { font-size: 1.2rem; font-weight: 700; }
+    h3 { font-size: 1.2rem; font-weight: 600; }
 
     .section-tag {
       display: inline-block;
@@ -178,6 +178,11 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 var(--border), var(--shadow);
     }
+    nav.scrolled .nav-logo-text { color: var(--navy); }
+    nav.scrolled .nav-logo-sub { color: var(--text-muted); }
+    nav.scrolled .nav-links a { color: var(--text); }
+    nav.scrolled .nav-links a:hover { color: var(--teal-dark); background: var(--teal-light); }
+    nav.scrolled .hamburger span { background: var(--navy); }
     .nav-inner {
       max-width: 1160px;
       margin: 0 auto;
@@ -205,17 +210,17 @@
       flex-shrink: 0;
     }
     .nav-logo-text {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--navy);
+      font-weight: 700;
+      color: white;
       line-height: 1.1;
     }
     .nav-logo-sub {
       font-family: 'Inter', sans-serif;
       font-size: 0.65rem;
       font-weight: 500;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.65);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -227,14 +232,14 @@
     }
     .nav-links a {
       text-decoration: none;
-      color: var(--text);
+      color: rgba(255,255,255,0.88);
       font-size: 0.9rem;
       font-weight: 500;
       padding: 8px 14px;
       border-radius: 8px;
       transition: all 0.2s ease;
     }
-    .nav-links a:hover { color: var(--teal-dark); background: var(--teal-light); }
+    .nav-links a:hover { color: white; background: rgba(255,255,255,0.12); }
     .nav-cta { display: flex; align-items: center; gap: 12px; }
     .hamburger {
       display: none;
@@ -254,7 +259,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--navy);
+      background: white;
       border-radius: 2px;
       transition: all 0.3s ease;
     }
@@ -383,7 +388,7 @@
       position: relative;
     }
     .hero-card-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: rgba(255,255,255,0.9);
@@ -425,7 +430,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 0.85rem;
       text-align: center;
@@ -552,7 +557,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.2rem;
       font-weight: 800;
       color: white;
@@ -590,7 +595,7 @@
       margin-bottom: 10px;
     }
     .room-tab-icon { font-size: 1.4rem; }
-    .room-tab h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+    .room-tab h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
     .room-tab ul {
       list-style: none;
       display: flex;
@@ -617,7 +622,7 @@
       border: 1px solid var(--border);
     }
     .info-card h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 14px;
@@ -635,7 +640,7 @@
       border: 1px solid var(--border);
     }
     .team-size-item .flat { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-    .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Syne', sans-serif; }
+    .team-size-item .count { font-size: 1rem; font-weight: 700; color: var(--navy); font-family: 'Plus Jakarta Sans', sans-serif; }
 
     /* ===========================
        PRICING
@@ -725,7 +730,7 @@
       border: 1px solid var(--border);
     }
     .rating-number {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 2.8rem;
       font-weight: 800;
       color: var(--navy);
@@ -884,7 +889,7 @@
       flex-shrink: 0;
     }
     .footer-logo-text {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.2rem;
       font-weight: 800;
       color: white;
@@ -906,7 +911,7 @@
     }
     .footer-social:hover { background: var(--teal); }
     .footer-col h4 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
       color: white;
@@ -1044,7 +1049,6 @@
 <nav id="mainNav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">✨</div>
       <div>
         <div class="nav-logo-text">VIP Úklid</div>
         <div class="nav-logo-sub">Uherské Hradiště</div>
@@ -1522,7 +1526,6 @@
     <div class="footer-top">
       <div>
         <a href="#" class="footer-logo">
-          <div class="footer-logo-icon">✨</div>
           <div class="footer-logo-text">VIP Úklid</div>
         </a>
         <p class="footer-desc">Profesionální úklidový servis v Uherském Hradišti a okolí. Hodnocení 98.2/100 na základě 99 ověřených recenzí.</p>
