@@ -932,6 +932,80 @@
     .review-author-date { font-size: 0.75rem; color: var(--text-muted); }
 
     /* ===========================
+       UPOZORNĚNÍ
+    =========================== */
+    .warnings { background: var(--navy); }
+    .warnings .section-tag { background: rgba(196,169,125,0.15); color: var(--teal); }
+    .warnings .section-title { color: white; }
+    .warnings .section-subtitle { color: rgba(255,255,255,0.6); }
+    .warnings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .warning-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: border-color 0.3s ease;
+    }
+    .warning-card:hover { border-color: rgba(196,169,125,0.4); }
+    .warning-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .warning-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .warning-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+    .warning-card ul {
+      list-style: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .warning-card ul li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .warning-card ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+    }
+    .warning-highlight {
+      margin-top: 28px;
+      padding: 20px 24px;
+      background: rgba(196,169,125,0.1);
+      border: 1px solid rgba(196,169,125,0.25);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .warning-highlight-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .warning-highlight p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.65; }
+    .warning-highlight strong { color: var(--teal); }
+    @media (max-width: 768px) { .warnings-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .warnings-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ===========================
        CONTACT
     =========================== */
     .contact { background: var(--bg-soft); }
@@ -1497,7 +1571,7 @@
           <ul class="service-detail-list">
             <li>Adresa a přibližná velikost v m²</li>
             <li>Počet pokojů a koupelen</li>
-            <li>Typ a výška stropů</li>
+            <li>Výška stropů</li>
             <li>Úroveň znečištění (běžné / silné)</li>
             <li>Počet oken a jejich typ</li>
             <li>Fotky při silném znečištění</li>
@@ -1626,6 +1700,54 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPOZORNĚNÍ -->
+<section class="warnings">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">⚠️ Před objednávkou</span>
+      <h2 class="section-title">Důležité informace</h2>
+      <p class="section-subtitle">Přečtěte si prosím před objednávkou — předejdete nedorozuměním a my se lépe připravíme.</p>
+    </div>
+    <div class="warnings-grid">
+      <div class="warning-card fade-up">
+        <span class="warning-card-icon">📋</span>
+        <h4>Co nám musíte sdělit</h4>
+        <p>Bez těchto informací nemůžeme potvrdit termín ani cenu:</p>
+        <ul>
+          <li>Adresa a velikost v m²</li>
+          <li>Počet pokojů a koupelen</li>
+          <li>Výška stropů</li>
+          <li>Počet a typ oken</li>
+          <li>Úroveň znečištění — běžné nebo silné</li>
+          <li>Typ podlah</li>
+        </ul>
+      </div>
+      <div class="warning-card fade-up">
+        <span class="warning-card-icon">📸</span>
+        <h4>Silné znečištění = fotky povinné</h4>
+        <p>Silné znečištění je například:</p>
+        <ul>
+          <li>Plíseň v koupelně nebo na oknech</li>
+          <li>Silná mastnota v kuchyni</li>
+          <li>Vodní kámen a znečištěné spáry</li>
+          <li>Silný nános tuku nad sporákem</li>
+        </ul>
+        <p style="margin-top:10px;">V těchto případech <strong style="color:var(--teal)">pošlete fotky předem</strong> — jinak nemůžeme garantovat výsledek.</p>
+      </div>
+      <div class="warning-card fade-up">
+        <span class="warning-card-icon">🪟</span>
+        <h4>Speciální okna & storno</h4>
+        <p><strong style="color:rgba(255,255,255,0.85)">Panoramatická a nestandardní okna</strong> — nutné zaslat rozměry a fotky. Taková okna někdy odmítáme kvůli bezpečnosti zaměstnanců.</p>
+        <p style="margin-top:12px;"><strong style="color:rgba(255,255,255,0.85)">Storno podmínky:</strong> bezplatné zrušení nejpozději <strong style="color:var(--teal)">48 hodin předem</strong>. Při kratší lhůtě účtujeme <strong style="color:var(--teal)">1 000 Kč</strong>.</p>
+      </div>
+    </div>
+    <div class="warning-highlight fade-up">
+      <span class="warning-highlight-icon">💬</span>
+      <p>Nenavštěvujeme domácnosti předem k obhlídce — veškeré informace sdělte při objednávce. <strong>Pokud se nedovoláte, jsme na úklidu.</strong> Ozveme se vám nejpozději do 16:00. Volejte pouze v pracovní době: <strong>Po–Pá 8:30–15:30</strong>.</p>
     </div>
   </div>
 </section>
