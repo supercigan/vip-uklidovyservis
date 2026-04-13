@@ -797,6 +797,97 @@
        PRICING
     =========================== */
     .pricing { background: var(--bg-soft); }
+    .pricing-hero {
+      display: grid;
+      grid-template-columns: auto 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-top: 48px;
+      margin-bottom: 36px;
+    }
+    .pricing-hero-main {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .pricing-hero-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .pricing-hero-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .pricing-hero-unit { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .pricing-stat {
+      background: white;
+      border-radius: 16px;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pricing-stat-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .pricing-stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .pricing-stat-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; }
+
+    /* Accordion */
+    .accordion { display: flex; flex-direction: column; gap: 12px; }
+    .acc-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .acc-item.open { box-shadow: var(--shadow); border-color: var(--teal); }
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .acc-trigger-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .acc-trigger-text { flex: 1; }
+    .acc-trigger-title { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .acc-trigger-sub { font-size: 0.9rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; margin-top: 2px; }
+    .acc-arrow {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.3s ease, background 0.3s ease;
+      flex-shrink: 0;
+    }
+    .acc-item.open .acc-arrow { transform: rotate(180deg); background: var(--teal-light); color: var(--teal-dark); }
+    .acc-body {
+      display: none;
+      padding: 0 24px 24px;
+    }
+    .acc-item.open .acc-body { display: block; }
+    .acc-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+    .acc-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--bg-soft);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .acc-note strong { color: var(--navy); }
+    @media (max-width: 900px) { .pricing-hero { grid-template-columns: 1fr 1fr; } .pricing-hero-main { grid-column: 1 / -1; } }
+    @media (max-width: 560px) { .pricing-hero { grid-template-columns: 1fr; } }
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1595,57 +1686,115 @@
       <p class="section-subtitle">Veškeré profesionální vybavení a čisticí prostředky jsou zahrnuty v ceně. Vy nemusíte nic připravovat.</p>
     </div>
 
-    <div class="pricing-cols">
-      <!-- Úklid -->
-      <div class="price-card featured fade-up">
-        <div class="price-card-header">
-          <span class="price-card-icon">🏠</span>
-          <h3>Úklidové práce</h3>
-        </div>
-        <div class="price-card-body">
-          <table class="price-table">
-            <thead><tr><th>Služba</th><th>Cena</th></tr></thead>
-            <tbody>
-              <tr><td>Klasický úklid</td><td><span style="color:var(--teal);font-weight:700">449 Kč/h</span></td></tr>
-              <tr><td>Generální úklid</td><td>individuální</td></tr>
-              <tr><td>Částečný generální úklid</td><td>individuální</td></tr>
-              <tr><td>Postavování skříní</td><td>individuální</td></tr>
-              <tr><td>Žehlení prádla</td><td>449 Kč/h</td></tr>
-              <tr><td>Ekologické přípravky</td><td>+100 Kč/h</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <!-- Klíčová čísla nahoře -->
+    <div class="pricing-hero fade-up">
+      <div class="pricing-hero-main">
+        <div class="pricing-hero-label">Základní sazba</div>
+        <div class="pricing-hero-num">449</div>
+        <div class="pricing-hero-unit">Kč / hodinu</div>
       </div>
-
-      <!-- Okna & sedačky -->
-      <div class="price-card fade-up">
-        <div class="price-card-header">
-          <span class="price-card-icon">🪟</span>
-          <h3>Okna & čalounění</h3>
-        </div>
-        <div class="price-card-body">
-          <table class="price-table">
-            <thead><tr><th>Služba</th><th>Cena</th></tr></thead>
-            <tbody>
-              <tr><td>Mytí oken</td><td><span style="color:var(--teal);font-weight:700">95 Kč/m²</span></td></tr>
-              <tr><td>Mytí žaluzií</td><td>40 Kč/m²</td></tr>
-              <tr><td>Mytí venkovních rolet</td><td>70 Kč/m²</td></tr>
-              <tr><td>Čištění sedaček (extraktor)</td><td><span style="color:var(--teal);font-weight:700">od 95 Kč/m²</span></td></tr>
-              <tr><td>Čištění koberců</td><td>individuální</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="pricing-stat">
+        <span class="pricing-stat-icon">🧴</span>
+        <div class="pricing-stat-val">Vše v ceně</div>
+        <div class="pricing-stat-desc">Profesionální vybavení a čisticí prostředky — nic nemusíte připravovat</div>
+      </div>
+      <div class="pricing-stat">
+        <span class="pricing-stat-icon">🚫</span>
+        <div class="pricing-stat-val">Storno 48 h</div>
+        <div class="pricing-stat-desc">Bezplatné zrušení nejpozději 48 h předem. Pozdější zrušení: 1 000 Kč</div>
+      </div>
+      <div class="pricing-stat">
+        <span class="pricing-stat-icon">🚗</span>
+        <div class="pricing-stat-val">Výjezd</div>
+        <div class="pricing-stat-desc">Výjezdový poplatek individuální — sdělíme před potvrzením rezervace</div>
       </div>
     </div>
 
-    <div class="pricing-info fade-up" style="margin-top:24px;">
-      <div class="pricing-info-icon">💡</div>
-      <p>
-        <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena, kterou slyšíte, je cena, kterou zaplatíte.
-        Firemní úklidy: VIP firemní úklid s.r.o. (plátce DPH 21 %).
-        Storno při zrušení méně než 48 h předem: <strong>1 000 Kč</strong>.
-        Výjezdový poplatek účtován individuálně — sdělíme před příjezdem.
-      </p>
+    <!-- Rozbalovací detaily -->
+    <div class="accordion fade-up">
+
+      <!-- Úklid domácnosti -->
+      <div class="acc-item open" id="acc1">
+        <button class="acc-trigger" onclick="toggleAcc('acc1')">
+          <span class="acc-trigger-icon">🏠</span>
+          <div class="acc-trigger-text">
+            <div class="acc-trigger-title">Úklid domácnosti</div>
+            <div class="acc-trigger-sub">Klasický, generální, stavební úklid, žehlení — od 449 Kč/h</div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-divider"></div>
+          <table class="price-table">
+            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Klasický úklid (pravidelný / jednorázový)</td><td><span style="color:var(--teal);font-weight:700">449 Kč/h</span></td></tr>
+              <tr><td>Generální úklid</td><td>individuální kalkulace</td></tr>
+              <tr><td>Částečný generální úklid</td><td>individuální kalkulace</td></tr>
+              <tr><td>Stavební úklid</td><td>individuální kalkulace</td></tr>
+              <tr><td>Žehlení prádla</td><td>449 Kč/h</td></tr>
+              <tr><td>Doprovod</td><td>500 Kč</td></tr>
+              <tr><td>Ekologické přípravky (na vyžádání)</td><td>+100 Kč/h</td></tr>
+            </tbody>
+          </table>
+          <div class="acc-note">
+            <strong>Nejsme plátci DPH</strong> (VIP cleaning service s.r.o.) — cena kterou slyšíte, je cena kterou zaplatíte. Firemní úklidy zajišťuje VIP firemní úklid s.r.o. — plátce DPH 21 %.
+          </div>
+        </div>
+      </div>
+
+      <!-- Mytí oken -->
+      <div class="acc-item" id="acc2">
+        <button class="acc-trigger" onclick="toggleAcc('acc2')">
+          <span class="acc-trigger-icon">🪟</span>
+          <div class="acc-trigger-text">
+            <div class="acc-trigger-title">Mytí oken</div>
+            <div class="acc-trigger-sub">Klasická, výlohová i francouzská okna, žaluzie, rolety — od 40 Kč/m²</div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-divider"></div>
+          <table class="price-table">
+            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Mytí oken (klasická, výlohová, francouzská)</td><td><span style="color:var(--teal);font-weight:700">95 Kč/m²</span></td></tr>
+              <tr><td>Mytí žaluzií</td><td>40 Kč/m²</td></tr>
+              <tr><td>Mytí venkovních rolet</td><td>70 Kč/m²</td></tr>
+            </tbody>
+          </table>
+          <div class="acc-note">
+            Mytí probíhá vždy <strong>včetně rámů</strong>. Panoramatická a nestandardní okna — nutné zaslat rozměry a fotky předem, někdy odmítáme z bezpečnostních důvodů. Uveďte typ oken při rezervaci.
+          </div>
+        </div>
+      </div>
+
+      <!-- Čištění extraktorem -->
+      <div class="acc-item" id="acc3">
+        <button class="acc-trigger" onclick="toggleAcc('acc3')">
+          <span class="acc-trigger-icon">🛋️</span>
+          <div class="acc-trigger-text">
+            <div class="acc-trigger-title">Čištění sedaček & koberců extraktorem</div>
+            <div class="acc-trigger-sub">Profesionální hloubkové čištění čalounění a koberců — od 95 Kč/m²</div>
+          </div>
+          <div class="acc-arrow">▼</div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-divider"></div>
+          <table class="price-table">
+            <thead><tr><th>Služba</th><th style="text-align:right">Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Čištění sedacích souprav (extraktor)</td><td><span style="color:var(--teal);font-weight:700">od 95 Kč/m²</span></td></tr>
+              <tr><td>Čištění koberců</td><td>individuální kalkulace</td></tr>
+              <tr><td>Průměrná sedačka (3-sedák)</td><td>cca 1 500 Kč</td></tr>
+            </tbody>
+          </table>
+          <div class="acc-note">
+            <strong>Co je extraktor?</strong> Přístroj pracující se studenou/vlažnou vodou — vysokým tlakem vsakuje nečistoty ze sedáků a koberců. Průměrná sedačka se čistí přibližně <strong>2–3 hodiny</strong>. Výsledek bez chemie, šetrný k materiálu.
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1946,6 +2095,14 @@
     });
   }, { threshold: 0.12 });
   fadeEls.forEach(el => observer.observe(el));
+
+  // Accordion
+  function toggleAcc(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 
   // Form submit
   function submitForm() {
